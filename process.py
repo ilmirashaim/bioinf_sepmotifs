@@ -86,8 +86,8 @@ for filename in filenames:
                place += 1
 
       # plot of Umo.count
-      plt.figure()
-      plt.plot(lengths, umiProps)
+      # plt.figure()
+      # plt.plot(lengths, umiProps)
 
    aminoAcidFreqDicts.append(aminoAcidFreqDict)
 

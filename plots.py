@@ -8,6 +8,7 @@ filenames = ['azh_1.txt', 'yzh_2.txt', 'gs_3.txt', 'kb_4.txt', 'tv_5.txt', 'irzv
 
 dataFolder = 'data'
 outFolder = 'out'
+figuresFolder = 'figures'
 i=0
 fig = plt.figure()
 
@@ -43,5 +44,5 @@ for filename in filenames:
       print(filename)
 
 # plt.show()
-fig.savefig(os.path.join(outFolder, 'length_vs_umi.png'))
+fig.savefig(os.path.join(outFolder, figuresFolder, 'length_vs_umi.png'))
 plt.close(fig)
