@@ -1,6 +1,8 @@
 import csv
 import os
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as stats
 
 keys = ['A', 'W', 'I', 'Y', 'G', 'H', 'D', 'F', 'C', 'P', 'Q', 'M', 'V', 'S', 'E', 'K', 'R', 'L', 'N', 'T']
 
@@ -37,11 +39,11 @@ for filename in filenames:
          lengths.append(len(seq))
          umiProps.append(float(row[1]))
 
-
       ax = fig.add_subplot(320+i)
       ax.plot(lengths, umiProps, 'ro')
       ax.set_ylim([0,0.01])
       print(filename)
+      print(stats.pearsonr(lengths, umiProps))
 
 # plt.show()
 fig.savefig(os.path.join(outFolder, figuresFolder, 'length_vs_umi.png'))
