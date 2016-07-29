@@ -1,5 +1,7 @@
 library(Peptides)
-data <- read.csv('data/azh_1.txt', sep='\t')
+n=100
+data <- read.csv('data/azh_1.txt', sep='\t', nrows= n,
+                 stringsAsFactors = FALSE)
 
 getKideraFactors = function(seq){
     x = sapply(c("helix.bend.pref", "side.chain.size",
@@ -9,9 +11,12 @@ getKideraFactors = function(seq){
             "pK.C", "surrounding.hydrop"), kidera, seq = seq)
     x
 }
-    
-res <- sapply(data$CDR3.amino.acid.sequence, getKideraFactors)
-res <- t(res)
-res <- data.frame(res)
-res$seq <- as.character(data$CDR3.amino.acid.sequence)
-write.table(res[,c(11,1:10)], file='data/kidera/azh_1.txt', sep="\t", quote=FALSE)
+seqs <- data$CDR3.amino.acid.sequence[1:n]
+resMat <- sapply(seqs, getKideraFactors)
+resMat <- t(resMat)
+res <- data.frame(resMat)
+res$seq <- as.character(seqs)
+#write.table(res[,c(11,1:10)], file='data/kidera/azh_1.txt', sep="\t", quote=FALSE)
+
+hc <- hclust(dist(resMat), "ave", labels = as.character(seqs))
+plot(hc)
